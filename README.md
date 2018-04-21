@@ -5,7 +5,7 @@ This docker image contains an instance of Unidata GEMPAK/NAWIPS running in a vir
 
 #### Run GEMPAK Docker Image
 
-From the command line, run
+From the command line:
 
     docker run -p 6080:6080 -it unidata/cloudgempak
 
