@@ -59,9 +59,9 @@ USER ${CUSER}
 # Override default windows session geometry and color depth.
 ###
 
-ENV SIZEW 1600
-ENV SIZEH 1200
-ENV CDEPTH 24
+ENV w 1600
+ENV h 1200
+ENV d 24
 
 # Build-time metadata as defined at http://label-schema.org
 ARG BUILD_DATE
