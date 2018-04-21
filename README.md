@@ -13,15 +13,15 @@ This docker image contains an instance of Unidata GEMPAK/NAWIPS running in a vir
 
 From the command line, run
 
-    docker pull unidata/cloudstream:centos7
     docker run -p 6080:6080 -it unidata/cloudgempak
 
 and then open [http://localhost:6080](http://localhost:6080)
 
-![](https://www.unidata.ucar.edu/software/gempak/images/CloudGEMPAK.jpg)
+![](https://www.unidata.ucar.edu/software/gempak/images/CloudGEMPAK.png)
 
 ### Notes
 
+* The script `rungempak.sh` is included from the standalone GEMPAK Docker image ([hub.docker.com/r/unidata/gempak/](https://hub.docker.com/r/unidata/gempak/))
 * This repository uses a modified `bootstrap.sh` which overrides the `unidata/cloudstream:centos7` file of the same name.
 * If you wish to run multiple sessions, or leverage dynamic port mapping, you would start CloudGEMPAK as follows:
 

@@ -1,4 +1,5 @@
 [begin] (fluxbox)
+[exec] (xterm) {xterm}
 [exec] (NTL)    {. /home/gempak/GEMPAK7/Gemenviron.profile && /home/gempak/GEMPAK7/os/linux64/bin/ntl}
 [exec] (NMAP2)  {. /home/gempak/GEMPAK7/Gemenviron.profile && /home/gempak/GEMPAK7/os/linux64/bin/nmap2}
 [exec] (NTRANS) {. /home/gempak/GEMPAK7/Gemenviron.profile && /home/gempak/GEMPAK7/os/linux64/bin/ntrans}
@@ -6,5 +7,4 @@
 [exec] (NALARM) {. /home/gempak/GEMPAK7/Gemenviron.profile && /home/gempak/GEMPAK7/os/linux64/bin/nalarm}
 [exec] (NSHARP) {. /home/gempak/GEMPAK7/Gemenviron.profile && /home/gempak/GEMPAK7/os/linux64/bin/nsharp}
 [exec] (NCOLOR) {. /home/gempak/GEMPAK7/Gemenviron.profile && /home/gempak/GEMPAK7/os/linux64/bin/ncolor}
-[exec] (xterm) {xterm}
 [end] (fluxbox)

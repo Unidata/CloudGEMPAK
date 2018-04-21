@@ -1,52 +1,64 @@
 #####
-# Copyright Unidata 2018
+# Copyright Unidata 2018 (www.unidata.ucar.edu)
 # Used to generate the 'unidata/cloudgempak' docker container.
-# Visit us on the web at https://www.unidata.ucar.edu
+# Based on the GEMPAK Dockerfile 
+#    https://github.com/Unidata/gempak/blob/master/build/docker/Dockerfile.gempak
 #####
 
 FROM unidata/cloudstream:centos7
 MAINTAINER Michael James <mjames@ucar.edu>
 
 ###
-# Install latest EL7 GEMPAK RPM
+# Install latest EL7 GEMPAK RPM and dependencies
 ###
 
 USER root
-RUN useradd gempak
-RUN yum install -y openmotif libX11 libXt libXext libXp libXft libXtst xorg-x11-xbitmaps csh gtk2 mesa-libGLU mesa-libGL mesa-dri-drivers
+RUN yum install -y openmotif libX11 libXt libXext libXp libXft libXtst xorg-x11-xbitmaps xorg-x11-fonts* \
+  csh \
+  which \
+  libgfortran \
+  python-pip \
+  gtk2 \
+  mesa-libGLU \
+  mesa-libGL \
+  mesa-dri-drivers 
+RUN useradd -ms /bin/bash gempak
 RUN rpm -ivh http://www.unidata.ucar.edu/downloads/gempak/latest/gempak-latest.el7.centos.x86_64.rpm
+RUN pip install python-awips six shapely numpy
 RUN chown -R ${CUSER}:${CUSER} ${HOME} /home/gempak
-RUN yum install -y xorg-x11-fonts*
-USER ${CUSER}
-RUN echo ". /home/gempak/GEMPAK7/Gemenviron.profile" >> ~/.bash_profile
 
-# Desktop environment
+###
+# Environment
+###
+
+USER ${CUSER}
+RUN echo "#!/bin/bash -v" > ~/.bash_profile
+RUN echo ". /home/gempak/GEMPAK7/Gemenviron.profile" >> ~/.bash_profile
 RUN echo "session.screen0.toolbar.visible: false" >> ~/.fluxbox/init
 RUN echo "/usr/bin/fluxbox -log ~/.fluxbox/log" > ~/.fluxbox/startup
+RUN echo "CloudGEMPAK Version: $(rpm -qa |grep gempak| cut -d "-" -f 2) $(date)" >> $VERSION_FILE
+
+### 
+# Files from this repo
+###
 
 COPY bootstrap.sh ${HOME}/
 COPY start.sh ${HOME}/
+COPY rungempak.sh ${HOME}/
 COPY Dockerfile ${HOME}/
 COPY menu ${HOME}/.fluxbox/menu
 COPY README.md ${HOME}/
 COPY COPYRIGHT.md ${HOME}/
 ENV COPYRIGHT_FILE COPYRIGHT.md
 ENV README_FILE README.md
-
-###
-# Add the version number to the version file
-###
-
-RUN echo "CloudGEMPAK Version: $(rpm -qa |grep gempak| cut -d "-" -f 2) $(date)" >> $VERSION_FILE
 USER root
 RUN chown -R ${CUSER}:${CUSER} ${HOME}
-RUN echo "#!/bin/bash -v" > ${HOME}/.bash_profile
-RUN echo ". /home/gempak/GEMPAK7/Gemenviron.profile" >> ${HOME}/.bash_profile
 USER ${CUSER}
 
 ###
 # Override default windows session geometry and color depth.
 ###
+
 ENV SIZEW 1280
 ENV SIZEH 768
 ENV CDEPTH 24
