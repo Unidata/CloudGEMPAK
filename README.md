@@ -3,13 +3,7 @@
 
 This docker image contains an instance of Unidata GEMPAK/NAWIPS running in a virtual X11 environment, accessed via a web browser.   
 
-#### Build GEMPAK Docker image
-
-    git clone https://github.com/Unidata/CloudGEMPAK.git
-    cd CloudGEMPAK
-    make build
-
-#### Run GEMPAK
+#### Run GEMPAK Docker Image
 
 From the command line, run
 
@@ -18,6 +12,12 @@ From the command line, run
 and then open [http://localhost:6080](http://localhost:6080)
 
 ![](https://www.unidata.ucar.edu/software/gempak/images/CloudGEMPAK.png)
+
+#### Build GEMPAK Image
+
+    git clone https://github.com/Unidata/CloudGEMPAK.git
+    cd CloudGEMPAK
+    make build
 
 ### Notes
 
