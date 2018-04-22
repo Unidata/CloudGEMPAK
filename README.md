@@ -23,7 +23,7 @@ and then open [http://localhost:6080](http://localhost:6080)
 
 * Specify the width and height on the command line:
 
-      docker run -p 6080:6080 -e w=1024 -e h=768 unidata/cloudgempak
+      docker run -p 6080:6080 -e SIZEW=1024 -e SIZEH=768 unidata/cloudgempak
 
 * The script `rungempak.sh` is included from the standalone GEMPAK Docker image ([hub.docker.com/r/unidata/gempak/](https://hub.docker.com/r/unidata/gempak/))
 * This repository uses a modified `bootstrap.sh` which overrides the `unidata/cloudstream:centos7` file of the same name.
