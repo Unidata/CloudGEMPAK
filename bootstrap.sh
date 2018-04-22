@@ -115,7 +115,7 @@ cat VERSION.md
 printf "=============================================================\n\n"
 
 if [ -f /home/${CUSER}/start.sh ]; then
-    /home/${CUSER}/start.sh
+    /home/${CUSER}/start.sh >& /dev/null
 fi
 
 echo "Session Running at http://localhost:6080"
