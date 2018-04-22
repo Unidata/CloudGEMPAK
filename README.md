@@ -1,5 +1,5 @@
 
-# CloudStream GEMPAK <IMG SRC="https://travis-ci.org/mjames-upc/CloudGEMPAK.svg?branch=master"/>
+# CloudStream GEMPAK <IMG SRC="https://travis-ci.org/mjames-upc/CloudGEMPAK.svg?branch=master"/> <IMG SRC="https://img.shields.io/docker/pulls/unidata/cloudgempak.svg"/>
 
 This [docker image](https://hub.docker.com/r/unidata/cloudgempak/) contains an instance of Unidata GEMPAK/NAWIPS running in a virtual X11 environment provided by [CloudStream](https://github.com/Unidata/cloudstream). GEMPAK GUI and command line programs can be run through a browser, though a data directory must be mounted to show real-time or archive data (most likely to `/data/ldm/pub/decoded/gempak`).
 

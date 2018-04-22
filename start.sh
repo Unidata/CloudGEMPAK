@@ -1,5 +1,4 @@
 #!/bin/bash
-set -x
 . /home/gempak/GEMPAK7/Gemenviron.profile
-ntl &
-nmap2 & 
+ntl >& /dev/null &
+nmap2 >& /dev/null & 
