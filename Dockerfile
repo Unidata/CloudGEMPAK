@@ -13,17 +13,10 @@ MAINTAINER Michael James <mjames@ucar.edu>
 ###
 
 USER root
-RUN yum install -y openmotif libX11 libXt libXext libXp libXft libXtst xorg-x11-xbitmaps xorg-x11-fonts* \
-  csh \
-  which \
-  libgfortran \
-  python-pip \
-  gtk2 \
-  mesa-libGLU \
-  mesa-libGL \
-  mesa-dri-drivers 
+RUN yum install -y openmotif libXp xorg-x11-xbitmaps xorg-x11-fonts* csh python-pip gtk2 mesa-libGLU
 RUN useradd -ms /bin/bash gempak
-RUN rpm -ivh http://www.unidata.ucar.edu/downloads/gempak/latest/gempak-latest.el7.centos.x86_64.rpm
+RUN wget https://www.unidata.ucar.edu/downloads/gempak/latest/gempak-7.4.3-1.el7.centos.x86_64.rpm
+RUN rpm -ivh gempak-7.4.3-1.el7.centos.x86_64.rpm
 RUN pip install python-awips six shapely numpy
 RUN chown -R ${CUSER}:${CUSER} ${HOME} /home/gempak
 
@@ -53,6 +46,7 @@ ENV COPYRIGHT_FILE COPYRIGHT.md
 ENV README_FILE README.md
 USER root
 RUN chown -R ${CUSER}:${CUSER} ${HOME}
+RUN rm -rf gempak-7.4.3-1.el7.centos.x86_64.rpm
 USER ${CUSER}
 
 ###

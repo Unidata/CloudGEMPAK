@@ -1,7 +1,7 @@
 
 # CloudStream GEMPAK <IMG SRC="https://travis-ci.org/mjames-upc/CloudGEMPAK.svg?branch=master"/> <IMG SRC="https://img.shields.io/docker/pulls/unidata/cloudgempak.svg"/>
 
-This [docker image](https://hub.docker.com/r/unidata/cloudgempak/) contains an instance of Unidata GEMPAK/NAWIPS running in a virtual X11 environment provided by [CloudStream](https://github.com/Unidata/cloudstream). GEMPAK GUI and command line programs can be run through a browser, though a data directory must be mounted to show real-time or archive data (most likely to `/data/ldm/pub/decoded/gempak`).
+This [docker image](https://hub.docker.com/r/unidata/cloudgempak/) contains an instance of Unidata GEMPAK/NAWIPS running in a virtual X11 environment provided by [CloudStream](https://github.com/Unidata/cloudstream). In this way, GEMPAK GUI and command line programs can be run through a browser, with `/data/ldm/gempak` being mounted from the host machine.
 
 #### Run GEMPAK Docker Image
 
@@ -18,6 +18,21 @@ and then open [http://localhost:6080](http://localhost:6080)
     git clone https://github.com/Unidata/CloudGEMPAK.git
     cd CloudGEMPAK
     make build
+
+## Real-Time Data
+
+To run CloudGEMPAK with a local data directory:
+
+    docker run -p 6080:6080 -it -v /data/ldm/gempak:/data/ldm/gempak unidata/cloudgempak
+
+The directory `/data/ldm/gempak` can be supplied either by a local LDM installation or by leveraging the [LDM Docker](https://github.com/Unidata/ldm-docker) project:
+
+    git clone https://github.com/Unidata/ldm-docker.git 
+    cd ldm-docker
+    mv 
+    
+
+
 
 ### Notes
 
